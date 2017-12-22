@@ -5,3 +5,4 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Plan.create(user_id: "3", date: "22/12/2017", ambition: "Test", accomplishment: "View")

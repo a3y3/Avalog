@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-  	@users = User.all
+  	@plan = Plan.find_by(user_id: current_user.id)
   end
 end

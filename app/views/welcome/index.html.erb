@@ -1,2 +1,9 @@
-<h1>Welcome <%=current_user.name%></h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<div class = "container">
+	<h1>Welcome, <%=current_user.name%>! Your id is <%=current_user.id%></h1>
+	You have no plans. Create a new plan today.
+	 <%= form_for(@plan) do |f| %>
+	 	<%=Time.now.strftime("%d/%m/%Y")%>
+		<%= f.text_field :ambition%>
+	 <%end%>
+</div>
+
