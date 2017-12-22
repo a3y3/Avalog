@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'welcome/index'
+  resources :plans
    
   devise_for :users, controllers: {
         sessions: 'users/sessions',
@@ -7,6 +8,6 @@ Rails.application.routes.draw do
       }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  post '/plan' => "plans#create"
+  post '/plans' => "plans#create"
   root 'welcome#index'
 end

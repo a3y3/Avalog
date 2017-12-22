@@ -10,6 +10,19 @@ class PlansController < ApplicationController
 		else
 			render plain: "error"
 		end
+	end
 
+	def update
+		set_plan
+		if(@plan.update!(params.require(:plan).permit(:accomplishment)))
+			redirect_to root_path
+		else
+			render plain: "error"
+		end
+	end
+
+	private
+	def set_plan
+		@plan = Plan.find(params[:id])
 	end
 end
