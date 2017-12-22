@@ -1,16 +1,6 @@
 <h1>Welcome, <%=current_user.name%>! Your id is <%=current_user.id%></h1>
-<%if(@plan.present?)%> 
-	<%= form_for(@plan) do |f|%>
-		<%= f.text_field :accomplishment%>
-		<%= f.submit "Add accomplishment"%>
-	<%end%>
-<%else%>
-	<%= form_for(:plan, url: plans_path) do |f| %>
-		<%=Time.now.strftime("%d/%m/%Y")%>
-		<%= f.text_field :ambition%>
-		<%= f.submit "Ambition button"%>
-	<%end%> <br>
-<%end%>
+
+<%=display_forms%>
 
 Don't forget to update what you learnt today, before signing out!
 <table class = "table">
@@ -39,5 +29,5 @@ Don't forget to update what you learnt today, before signing out!
 		</tr>
 	<%end%>
 </table>
-<%= link_to "View all users", users_path%> 
+<%= link_to "View all users", custom_users_path%> 
 

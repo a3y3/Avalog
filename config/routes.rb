@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'welcome/index'
   resources :plans
-  resources :users
+  resources :custom_users
    
   devise_for :users, controllers: {
         sessions: 'users/sessions',
