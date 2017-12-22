@@ -1,6 +1,4 @@
 <h1>Welcome, <%=current_user.name%>! Your id is <%=current_user.id%></h1>
-You have no plans. Create a new plan today. <br>
-
 <%if(@plan.present?)%> 
 	<%= form_for(@plan) do |f|%>
 		<%= f.text_field :accomplishment%>
