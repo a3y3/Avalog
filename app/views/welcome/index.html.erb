@@ -1,8 +1,29 @@
 <h1>Welcome, <%=current_user.name%>!</h1>
+<br>
 
-<%=display_forms%>
-
-Don't forget to update what you learnt today, before signing out!
+<%if(@plan.present?) %>
+	<%=form_for(@plan) do |f|%>
+		<div class = "form-group">
+			<%=f.label "Edit/ write down what you achieved today"%>
+			<%=f.text_field :accomplishment, class: "form-control"%>
+		</div>
+	 	<%=f.submit :Submit, class: "btn btn-primary"%>
+	<%end%>
+<%else%>
+	<%=form_for(:plan, url: plans_path) do |f| %>
+		<%=Time.now.strftime("%d/%m/%Y")%>
+		<div class = "form-group">
+			<%=f.label "What do you plan to learn today?"%>
+			<%=f.text_field :ambition, class: "form-control"%>
+		</div>
+		
+		<%=f.submit :Submit, class: "btn btn-primary"%>
+	<%end%>
+<%end%>
+<br>
+<p>
+	<h3>Here's what your history looks like</h3>
+</p>
 <table class = "table">
 	<tr>
 		<th>
