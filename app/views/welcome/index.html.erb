@@ -1,9 +1,10 @@
 <div class = "container">
 	<h1>Welcome, <%=current_user.name%>! Your id is <%=current_user.id%></h1>
-	You have no plans. Create a new plan today.
-	 <%= form_for(@plan) do |f| %>
+	You have no plans. Create a new plan today. <br>
+	 <%= form_for(:plan, url: plan_path) do |f| %>
 	 	<%=Time.now.strftime("%d/%m/%Y")%>
 		<%= f.text_field :ambition%>
+		<%= f.submit %>
 	 <%end%>
 </div>
 
