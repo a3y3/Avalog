@@ -1,43 +1,45 @@
-<div class = "container">
-	<h1>Welcome, <%=current_user.name%>! Your id is <%=current_user.id%></h1>
-	You have no plans. Create a new plan today. <br>
+<h1>Welcome, <%=current_user.name%>! Your id is <%=current_user.id%></h1>
+You have no plans. Create a new plan today. <br>
+
+<%if(@plan.present?)%> 
+	<%= form_for(@plan) do |f|%>
+		<%= f.text_field :accomplishment%>
+		<%= f.submit "Add accomplishment"%>
+	<%end%>
+<%else%>
 	<%= form_for(:plan, url: plans_path) do |f| %>
-	 	<%=Time.now.strftime("%d/%m/%Y")%>
+		<%=Time.now.strftime("%d/%m/%Y")%>
 		<%= f.text_field :ambition%>
-		<%= f.submit %>
-	 <%end%> <br>
+		<%= f.submit "Ambition button"%>
+	<%end%> <br>
+<%end%>
 
-	 Don't forget to update what you learnt today, before signing out!
-	 <%= form_for(@plan) do |f|%>
-	 	<%= f.text_field :accomplishment%>
-	 	<%= f.submit %>
-	 <%end%>
-
-	 <table class = "table">
-	 	<tr>
-	 		<th>
-	 			Date
-	 		</th>
-	 		<th>
-	 			Plan
-	 		</th>
-	 		<th>
-	 			Accomplishment
-	 		</th>
-	 	</tr>
-	 	<% @plans.each do |plan| %>
-	 		<tr>
-	 			<td>
-	 				<%=plan.date%>
-	 			</td>
-	 			<td>
-	 				<%=plan.ambition%>
-	 			</td>
-	 			<td>
-	 				<%=plan.accomplishment%>
-	 			</td>
-	 		</tr>
-	 	<%end%>
-	 </table>
-</div>
+Don't forget to update what you learnt today, before signing out!
+<table class = "table">
+	<tr>
+		<th>
+			Date
+		</th>
+		<th>
+			Plan
+		</th>
+		<th>
+			Accomplishment
+		</th>
+	</tr>
+	<% @plans.each do |plan| %>
+		<tr>
+			<td>
+				<%=plan.date%>
+			</td>
+			<td>
+				<%=plan.ambition%>
+			</td>
+			<td>
+				<%=plan.accomplishment%>
+			</td>
+		</tr>
+	<%end%>
+</table>
+<%= link_to "View all users", users_path%> 
 

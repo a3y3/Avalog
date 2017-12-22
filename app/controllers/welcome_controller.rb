@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-  	@plans = Plan.where(user_id: current_user.id)
+  	@plans = current_user.plans
   	@plan = @plans.find_by(date: Time.now.strftime("%d/%m/%Y"))
   end
 end
