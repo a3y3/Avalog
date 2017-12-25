@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   post '/plans' => "plans#create"
   root 'welcome#index'
+
+  get '/email' => "welcome#send_email"
 end

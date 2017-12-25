@@ -4,7 +4,7 @@
 <%if(@plan.present?) %>
 	<%=form_for(@plan) do |f|%>
 		<div class = "form-group">
-			<%=f.label "Edit/ write down what you achieved today"%>
+			<%=f.label "Edit/write down what you achieved today"%>
 			<%=f.text_field :accomplishment, class: "form-control"%>
 		</div>
 	 	<%=f.submit :Submit, class: "btn btn-primary"%>
@@ -20,6 +20,7 @@
 		<%=f.submit :Submit, class: "btn btn-primary"%>
 	<%end%>
 <%end%>
+<%= link_to "EMAIL TEST", '/email'%> 
 <br>
 <p>
 	<h3>Here's what your history looks like</h3>
