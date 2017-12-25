@@ -1,24 +1,13 @@
-# README
+# Avalog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Avalog is a web application written entirely in Ruby on Rails that tracks your work in Avalon labs. It can also be used as a personal diary to keep track of what you've acheived during the day. Use Avalog to:
 
-Things you may want to cover:
+* Make plans as to what you want to achieve today
 
-* Ruby version
+* Write down what you actually achieved today after the day ends
 
-* System dependencies
+* Remind yourself to show up at work
 
-* Configuration
+* Have an admin account that tracks all the users' accounts
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Cheers to [Devise](https://github.com/plataformatec/devise) for being so awesome.
