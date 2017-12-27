@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
   end
 
   def send_email
-  	EmailSender.send_email
+  	UserMailer.send_email.deliver_now
   	redirect_to root_path
   end
 end
