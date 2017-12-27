@@ -54,3 +54,4 @@ gem 'devise'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'petergate', '~> 1.6', '>= 1.6.3'
 gem 'figaro'
+gem 'whenever', :require => false
