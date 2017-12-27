@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every :day, :at => '1:33 pm' do
-	mailto: 'sohamssd@example.com'
+every 2.minutes do
+	runner 'EmailSender.send_email'
 end
