@@ -51,5 +51,7 @@
 		</tr>
 	<%end%>
 </table>
-<%= link_to "View all users", custom_users_path%> 
-
+<% if logged_in?(:admin)%>
+	Our systems have detected that you are an admin. You can 
+	<%= link_to "view all users", custom_users_path%> here.
+<%end%>

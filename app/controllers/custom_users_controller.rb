@@ -1,5 +1,5 @@
 class CustomUsersController < ApplicationController
-	access root_admin: :all
+	access admin: :all
 	def index
 		@users = User.all
 	end
