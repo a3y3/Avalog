@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 2.minutes do
-	runner 'WelcomeController.send_email'
+every 1.minutes do
+	rake "mailme", :environment => "development"
 end
