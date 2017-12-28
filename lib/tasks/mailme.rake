@@ -1,4 +1,4 @@
 task :mailme => :environment do
-  UserMailer.send_email.deliver_now
+  HardWorker.perform_async
   #puts "asdasdadad"
 end

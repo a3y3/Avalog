@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.minutes do
+every 1.day, :at => '1:05 pm' do
 	rake "mailme", :environment => "development"
 end
