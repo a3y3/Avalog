@@ -25,6 +25,9 @@ u.each do |user|
 	every :day, :at => user.timings do
 		rake "mailme", :environment => "development"
 	end
+	every :day, :at => user.timings_end do
+		rake "mailme", :environment => "development"
+	end
 end
 # every 1.minute  do
 # 	rake "mailme", :environment => "development"
