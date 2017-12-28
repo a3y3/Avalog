@@ -26,8 +26,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :Timings %><br />
+    <%= f.text_field :timings, autocomplete: "off", placeholder: "Enter your office timings here. Example: 10:00 pm, 11:00 am, etc.", class: "form-control" %>
+  </div>
+
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: "btn btn-primary" %>
   </div>
 <% end %>
 

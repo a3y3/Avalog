@@ -9,6 +9,7 @@ class User < ApplicationRecord
  
 
 	validates :name, :presence => true
+  validates :timings, :presence => true
 	has_many :plans
 
   # Include default devise modules. Others available are:

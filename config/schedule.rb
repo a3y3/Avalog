@@ -18,7 +18,14 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+require File.expand_path(File.dirname(__FILE__) + "/environment")
 
-every 1.day, :at => '1:05 pm' do
-	rake "mailme", :environment => "development"
+u = User.all
+u.each do |user|
+	every :day, :at => user.timings do
+		rake "mailme", :environment => "development"
+	end
 end
+# every 1.minute  do
+# 	rake "mailme", :environment => "development"
+# end

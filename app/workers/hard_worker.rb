@@ -3,6 +3,6 @@ class HardWorker
 
   def perform()
     # Do something
-    UserMailer.send_email.deliver_now
+    UserMailer.send_email.deliver_now!
   end
 end
