@@ -27,15 +27,19 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :Timings %><br />
-    <%= f.text_field :timings, autocomplete: "off", placeholder: "Enter your office timings here. Example: 10:00 pm, 11:00 am, etc.", class: "form-control" %>
+    <%= f.label "When do you want to get reminded?" %><br />
+    <%= f.text_field :timings, placeholder: "Enter your office timings here. Example: 10:00 pm, 11:00 am, etc.", class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :Timings %><br />
-    <%= f.text_field :timings_end, autocomplete: "off", placeholder: "Enter your office timings here. Example: 10:00 pm, 11:00 am, etc.", class: "form-control" %>
+    <%= f.label "When does your office get over?" %><br />
+    <%= f.text_field :timings_end, placeholder: "Enter your office timings here. Example: 10:00 pm, 11:00 am, etc.", class: "form-control" %>
   </div>
-
+  <div class="form-group">
+    <%= f.label "Choose your department" %><br />
+    <%= f.number_field :department_id, placeholder: "Enter 1 for Software Developer, 2 for Buisness Developer, or 3 for UI/UX", class: "form-control" %>
+  </div>
+  
   <div class="actions">
     <%= f.submit "Sign up", class: "btn btn-primary" %>
   </div>

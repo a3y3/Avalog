@@ -1,6 +1,9 @@
 <h1>Welcome, <%=current_user.name%>!</h1>
+<% if logged_in?(:admin, :manager)%>
+	<b>Note: Our systems have detected that you are an admin. You can 
+	<%= link_to "view all users", custom_users_path%> here.</b>
+<%end%><br>
 <br>
-
 <%if(@plan.present?) %>
 	<%=form_for(@plan) do |f|%>
 		<div class = "form-group">
@@ -11,7 +14,6 @@
 	<%end%>
 <%else%>
 	<%=form_for(:plan, url: plans_path) do |f| %>
-		<%=Time.now.strftime("%d/%m/%Y")%>
 		<div class = "form-group">
 			<%=f.label "What do you plan to learn today?"%>
 			<%=f.text_field :ambition, class: "form-control"%>
@@ -20,7 +22,6 @@
 		<%=f.submit :Submit, class: "btn btn-primary"%>
 	<%end%>
 <%end%>
-<%= link_to "EMAIL TEST", '/email'%> 
 <br>
 <p>
 	<h3>Here's what your history looks like</h3>
@@ -51,7 +52,3 @@
 		</tr>
 	<%end%>
 </table>
-<% if logged_in?(:admin)%>
-	Our systems have detected that you are an admin. You can 
-	<%= link_to "view all users", custom_users_path%> here.
-<%end%>

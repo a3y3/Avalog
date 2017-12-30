@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get '/email' => "welcome#send_email"
+  get '/insert_checkbox' => 'plans#set_checkbox'
 end

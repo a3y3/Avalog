@@ -57,3 +57,4 @@ gem 'petergate', '~> 1.6', '>= 1.6.3'
 gem 'figaro'
 gem 'whenever', :require => false
 gem 'sidekiq'
+gem 'jquery-rails'

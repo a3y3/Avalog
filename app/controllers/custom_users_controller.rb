@@ -1,7 +1,8 @@
 class CustomUsersController < ApplicationController
-	access admin: :all
+	access admin: :all, manager: :all
 	def index
 		@users = User.all
+		@departments = Department.all
 	end
 
 	def show

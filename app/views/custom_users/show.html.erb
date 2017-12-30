@@ -1,6 +1,9 @@
 <table class = "table">
  	<tr>
  		<th>
+ 			A'okay
+ 		</th>
+ 		<th>
  			Date
  		</th>
  		<th>
@@ -13,6 +16,9 @@
  	<% @plans.each do |plan| %>
  		<tr>
  			<td>
+ 				<input type="checkbox" id="checkbox-users-show" onclick="sendCheckRequest(<%=plan.id%>)">
+ 			</td>
+ 			<td>
  				<%=plan.date%>
  			</td>
  			<td>
@@ -24,3 +30,23 @@
  		</tr>
  	<%end%>
 </table>
+<script type="text/javascript">
+	function sendCheckRequest(planId){
+		console.log("Logged plan ID "+planId);
+	$.ajax({
+		url: '../insert_checkbox',
+		type: "GET",
+		data: {'plan_id': planId},
+		dataType: "json",
+		success: function(data){
+			alert("Success");
+
+
+		},
+		error: function(data){
+			alert('Failure');
+			console.log(data.responseText);
+		}
+	});
+}
+</script>

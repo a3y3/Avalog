@@ -73,6 +73,12 @@
 	position: absolute;
 	top: 35px;
 }
+
+input[type="checkbox"]{
+  width: 18px; /*Desired width*/
+  height: 18px; /*Desired height*/
+  cursor: pointer;
+}
 @media (max-width: 480px) {
 	#banner-user-info p{
 		text-align: center;
