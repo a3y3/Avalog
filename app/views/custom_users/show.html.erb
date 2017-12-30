@@ -17,6 +17,12 @@
  		<tr>
  			<td>
  				<input type="checkbox" id="checkbox-users-show" onclick="sendCheckRequest(<%=plan.id%>)">
+ 				<%if plan.checkbox == true %>
+ 					<script type="text/javascript">
+ 						console.log("plan.checkbox is true");
+ 						document.getElementById("checkbox-users-show").checked = true;
+ 					</script>
+ 				<%end%>
  			</td>
  			<td>
  				<%=plan.date%>
@@ -40,8 +46,6 @@
 		dataType: "json",
 		success: function(data){
 			alert("Success");
-
-
 		},
 		error: function(data){
 			alert('Failure');
