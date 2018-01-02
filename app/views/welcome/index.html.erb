@@ -4,7 +4,7 @@
 	<%= link_to "view all users", custom_users_path%> here.</b>
 <%end%><br>
 <br>
-<%if(@plan.present?) %>
+<%if Time.now.hour > 19 %>
 	<%=form_for(@plan) do |f|%>
 		<div class = "form-group">
 			<%=f.label "Edit/write down what you achieved today"%>
@@ -13,16 +13,19 @@
 	 	<%=f.submit :Submit, class: "btn btn-primary"%>
 	<%end%>
 <%else%>
-	<%=form_for(:plan, url: plans_path) do |f| %>
+	<%=form_for(@plan) do |f| %>
 		<div class = "form-group">
-			<%=f.label "What do you plan to learn today?"%>
-			<%=f.text_field :ambition, class: "form-control"%>
+			<%=f.label "What do you plan to learn today? (Make sure you separate each line with a new line)"%>
+			<%=f.text_area :ambition, id: "ambition-form-field", class: "form-control"%>
 		</div>
-		
-		<%=f.submit :Submit, class: "btn btn-primary"%>
+		<p style="color:#f44336">
+			<%=18-Time.now.hour%> hour(s) left to achieve your goals!
+		</p>
+		<%=f.submit "Add Plan", class: "btn btn-primary"%>
 	<%end%>
 <%end%>
 <br>
+
 <p>
 	<h3>Here's what your history looks like</h3>
 </p>
@@ -44,7 +47,7 @@
 				<%=plan.date%>
 			</td>
 			<td>
-				<%=plan.ambition%>
+				<%=plan.ambition.gsub(/\n/, '<br>').html_safe%>
 			</td>
 			<td>
 				<%=plan.accomplishment%>
@@ -52,3 +55,12 @@
 		</tr>
 	<%end%>
 </table>
+<script type="text/javascript">
+	function test(){
+		var text = document.getElementById("ambition-form-field");
+		if(text.value != ""){
+			text.value += "\n"; 
+		}
+	}	
+	window.onLoad= test();
+</script>

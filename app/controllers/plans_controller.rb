@@ -14,7 +14,10 @@ class PlansController < ApplicationController
 
 	def update
 		set_plan
-		if(@plan.update!(params.require(:plan).permit(:accomplishment)))
+		if(@plan.update!(params.require(:plan)
+								.permit(:accomplishment, :ambition)
+								.merge(:user_id => current_user.id,
+										:date => Time.now.strftime("%d/%m/%Y"))))
 			redirect_to root_path
 		else
 			render plain: "error"

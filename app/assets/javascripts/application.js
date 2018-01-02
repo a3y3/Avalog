@@ -35,11 +35,9 @@
 //= require .//hammer.js
 //= require .//jquery.mousewheel.js
 //= require .//mapplic.js
-//= require .//rickshaw.min.js
 //= require .//jquery.sparkline.min.js
 //= require .//skycons.js
 //= require .//pages.min.js
-//= require .//dashboard.js
 //= require .//scripts.js
 //= require rails-ujs
 //= require jquery
