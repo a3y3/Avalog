@@ -1,44 +1,57 @@
-<table class = "table">
-	 	<tr>
-	 		<th>
-	 			Name
-	 		</th>
-	 		<th>
-	 			Department
-	 		</th>
-	 		<th>
-	 			Action
-	 		</th>
-	 	</tr>
-	 	<% @users.each do |user| %>
-		 	<% @department = user.department%>
-		 	<% @current_department = current_user.department %>
-		 	<% if logged_in?(:manager)%>
-				<% if @current_department == @department%>
-					<tr>
-			 			<td>
-			 				<%=user.name%>
-			 			</td>
-			 			<td>
-			 				<%= @department.dept_name%>	 				
-			 			</td>
-			 			<td>
-			 				<%=link_to "View", custom_user_path(user)%>
-			 			</td>
-	 				</tr>
-				<%end%>
-			<% else%>
-				<tr>
-		 			<td>
-		 				<%=user.name%>
-		 			</td>
-		 			<td>
-		 				<%= @department.dept_name%>	 				
-		 			</td>
-		 			<td>
-		 				<%=link_to "View", custom_user_path(user)%>
-		 			</td>
- 				</tr>
-			<%end%>
-	 	<%end%>
-	 </table>
+<div class=" container-fluid   container-fixed-lg bg-white">
+  <!-- START card -->
+  <div class="card card-transparent">
+    <div class="card-header ">
+      <div class="card-title">Here's a list of all users</div>
+    </div>
+    <div class="card-block">
+      <div class="table-responsive">
+        <div id="basicTable_wrapper" class="dataTables_wrapper no-footer">
+          <table class="table table-hover dataTable no-footer" id="basicTable" role="grid">
+            <thead>
+              <tr role="row">
+                <th style="width: 143px;" class="sorting_desc" tabindex="0" aria-controls="basicTable" rowspan="1" colspan="1" aria-label="Title: activate to sort column ascending" aria-sort="descending">Name</th>
+                <th style="width: 146px;" class="sorting" tabindex="0" aria-controls="basicTable" rowspan="1" colspan="1" aria-label="Places: activate to sort column ascending">Department</th>
+                <th style="width: 228px;" class="sorting" tabindex="0" aria-controls="basicTable" rowspan="1" colspan="1" aria-label="Activities: activate to sort column ascending">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <% @department = user.department%>
+                <% @current_department = current_user.department %>
+                <% if logged_in?(:manager)%>
+                  <% if @current_department == @department%>
+                    <tr role="row" class="odd">
+                      <td class="v-align-middle">
+                        <p><%=user.name%></p>
+                      </td>
+                      <td class="v-align-middle sorting_1">
+                        <p><%= @department.dept_name%> </p> 
+                      </td>
+                      <td class="v-align-middle">
+                        <p><%=link_to "View", custom_user_path(user)%></p>
+                      </td>
+                    </tr>
+                  <%end%>
+                <%else%>
+                  <tr role="row" class="even">
+                    <td class="v-align-middle">
+                      <p><%=user.name%></p>
+                    </td>
+                    <td class="v-align-middle sorting_1">
+                      <p><%= @department.dept_name%> </p> 
+                    </td>
+                    <td class="v-align-middle">
+                      <p><%=link_to "View", custom_user_path(user)%></p>
+                    </td>
+                  </tr>
+                <%end%>
+              <%end%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END card -->
+</div>

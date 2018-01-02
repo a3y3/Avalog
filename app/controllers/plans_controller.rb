@@ -23,12 +23,13 @@ class PlansController < ApplicationController
 
 	def set_checkbox
 		plan = Plan.find(params[:plan_id])
-
-		if(plan.checkbox == true)
-			 plan.update!(checkbox: false)
-    	else
-    		plan.update!(checkbox: true)
-    	end
+		if(Department.plans.find(plan.id))
+			if(plan.checkbox == true)
+				 plan.update!(checkbox: false)
+	    	else
+	    		plan.update!(checkbox: true)
+	    	end
+	    end
 	end
 
 	private #try setting insert_checkbox to private
