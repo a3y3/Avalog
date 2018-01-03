@@ -21,13 +21,14 @@ class PlansController < ApplicationController
 
 	def set_checkbox
 		plan = Plan.find(params[:plan_id])
-		if(Department.plans.find(plan.id))
+		if(current_user.plans.find(plan.id))
 			if(plan.checkbox == true)
 				 plan.update!(checkbox: false)
 	    	else
 	    		plan.update!(checkbox: true)
 	    	end
 	    end
+	    redirect_to root_path
 	end
 
 	private 
