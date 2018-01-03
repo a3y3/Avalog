@@ -1,8 +1,8 @@
 class HardWorker
   include Sidekiq::Worker
 
-  def perform()
+  def perform(args)
     # Do something
-    UserMailer.send_email.deliver_now!
+    UserMailer.send_email(args).deliver_now!
   end
 end

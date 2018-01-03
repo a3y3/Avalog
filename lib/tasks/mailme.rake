@@ -1,5 +1,5 @@
-task :mailme => :environment do
-  # HardWorker.perform_async
-  #puts "asdasdadad"
-  UserMailer.send_email.deliver_now!
+task :mailme, [:email_id] => :environment do |t, args|
+  HardWorker.perform_async(args.email_id)
+  # puts "#{args.email_id}"
+  #UserMailer.send_email(args).deliver_now!
 end
