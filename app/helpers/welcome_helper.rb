@@ -6,4 +6,11 @@ module WelcomeHelper
 			(" here <br>")
 		end).html_safe
 	end
+	def current_time_exceeds_threshold
+		if(Time.now.hour > 11)
+			return true
+		else
+			return false
+		end
+	end
 end

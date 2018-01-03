@@ -3,7 +3,7 @@
 <%=show_users_path_if_admin%>
 
 <% if(@plans_for_today.present?)%>
-	<%if Time.now.hour > 11 %>
+	<%if current_time_exceeds_threshold %>
 		Check off the things you accomplished today. Don't worry, there's always tomorrow for plans you couldn't achieve today!
 		<% @plans_for_today.each do |plan|%>
 			<%if plan.checkbox == false%>
@@ -53,14 +53,16 @@
 				<%end%>
 			</td>
 			<td>
-				<%@plans.where(date: date).each do |plan|%> 
-					<%if(plan.checkbox == true)%>
-						<s><%=plan.ambition%></s> <br>
-					<%else%>
-						<%=plan.ambition%> <br>
-					<%end%>	
+				<%if (date == Time.now.strftime("%d/%m/%Y") && current_time_exceeds_threshold) ||
+					 date != Time.now.strftime("%d/%m/%Y") %>
+					<%@plans.where(date: date).each do |plan|%> 
+						<%if(plan.checkbox == true)%>
+							<s><%=plan.ambition%></s> <br>
+						<%else%>
+							<%=plan.ambition%> <br>
+						<%end%>	
+					<%end%>
 				<%end%>
-				
 			</td>
 		</tr>
 	<%end%>
