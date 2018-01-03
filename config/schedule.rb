@@ -18,17 +18,17 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-# require File.expand_path(File.dirname(__FILE__) + "/environment")
+require File.expand_path(File.dirname(__FILE__) + "/environment")
 
-# u = User.all
-# u.each do |user|
-# 	every :day, :at => user.timings do
-# 		rake "mailme", :environment => "development"
-# 	end
-# 	every :day, :at => user.timings_end do
-# 		rake "mailme", :environment => "development"
-# 	end
-# end
-every 1.minute  do
-	rake "mailme", :environment => "development"
-end
+u = User.all
+u.each do |user|
+	every :day, :at => user.timings do
+		rake "mailme"	, :environment => "development"
+	end
+	every :day, :at => user.timings_end do
+		rake "mailme", :environment => "development"
+	end
+	# every :day, :at => "8:00 am" do
+	# 	rake "save_unfinished_tasks", :environment => "development"
+	# end CHECK IF THIS WORKS PROPERLY.
+end 

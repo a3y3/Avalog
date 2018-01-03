@@ -4,6 +4,8 @@ module WelcomeHelper
 			("Note: Our systems have detected that you are an admin. You can ") +
 			(link_to "view all users", custom_users_path) +
 			(" here <br>")
+		else
+			""
 		end).html_safe
 	end
 	def current_time_exceeds_threshold

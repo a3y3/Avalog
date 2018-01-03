@@ -1,10 +1,9 @@
 <h1>Welcome, <%=current_user.name%>!</h1>
 
 <%=show_users_path_if_admin%>
-
-<% if(@plans_for_today.present?)%>
-	<%if current_time_exceeds_threshold %>
-		Check off the things you accomplished today. Don't worry, there's always tomorrow for plans you couldn't achieve today!
+<%if current_time_exceeds_threshold %>
+	Check off the things you accomplished today. Don't worry, there's always tomorrow for plans you couldn't achieve today!
+	<% if(@plans_for_today.present?)%>
 		<% @plans_for_today.each do |plan|%>
 			<%if plan.checkbox == false%>
 				<br>
@@ -12,8 +11,9 @@
 				<%=plan.ambition%>
 			<%end%>
 		<%end%>
-	<%else%>
-		<%=form_for(:plan, url: plans_path) do |f| %>
+	<%end%>
+<%else%>
+	<%=form_for(:plan, url: plans_path) do |f| %>
 		<div class = "form-group">
 			<%=f.label "What do you plan to learn today? (You can add plans till 6 pm today)"%>
 			<%=f.text_area :ambition, id: "ambition-form-field", class: "form-control"%>
@@ -22,7 +22,6 @@
 			<%=18-Time.now.hour%> hour(s) left to achieve your goals!
 		</p>
 		<%=f.submit "Add Plan", class: "btn btn-primary"%>
-	<%end%>
 	<%end%>
 <%end%>
 <br>
