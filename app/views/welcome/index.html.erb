@@ -1,21 +1,22 @@
 <h1>Welcome, <%=current_user.name%>!</h1>
-<% if logged_in?(:admin, :manager)%>
-	<b>Note: Our systems have detected that you are an admin. You can 
-	<%= link_to "view all users", custom_users_path%> here.</b>
-<%end%><br>
-<br>
-<%if Time.now.hour > 19 %>
-	<%=form_for(@plan) do |f|%>
-		<div class = "form-group">
-			<%=f.label "Edit/write down what you achieved today"%>
-			<%=f.text_field :accomplishment, class: "form-control"%>
-		</div>
-	 	<%=f.submit :Submit, class: "btn btn-primary"%>
+
+<%=show_users_path_if_admin%>
+
+<% if(@plans_for_today.present?)%>
+	<%if Time.now.hour > 06 %>
+		Check off the things you accomplished today. Don't worry, there's always tomorrow for plans you couldn't achieve today!
+		<% @plans_for_today.each do |plan|%>
+		<br>
+			<input type="checkbox" id="checkbox-users-show" onclick="sendCheckRequest(<%=plan.id%>)">
+			<%=plan.ambition%>
+		<%end%>
+	<%else%>
+		<h5>Your plans have been added. Get to work!</h5>
 	<%end%>
 <%else%>
-	<%=form_for(@plan) do |f| %>
+	<%=form_for(:plan, url: plans_path) do |f| %>
 		<div class = "form-group">
-			<%=f.label "What do you plan to learn today? (Make sure you separate each line with a new line)"%>
+			<%=f.label "What do you plan to learn today? (You can add plans till 6 pm today)"%>
 			<%=f.text_area :ambition, id: "ambition-form-field", class: "form-control"%>
 		</div>
 		<p style="color:#f44336">
@@ -41,26 +42,37 @@
 			Accomplishment
 		</th>
 	</tr>
-	<% @plans.each do |plan| %>
-		<tr>
+	<% @dates.each do |date| %>
+		<tr >
 			<td>
-				<%=plan.date%>
+				<%=date%>
 			</td>
 			<td>
-				<%=plan.ambition.gsub(/\n/, '<br>').html_safe%>
+				<%@plans.where(date: date).each do |plan|%> 
+					<%=plan.ambition%> <br>
+				<%end%>
 			</td>
 			<td>
-				<%=plan.accomplishment%>
+				
 			</td>
 		</tr>
 	<%end%>
 </table>
 <script type="text/javascript">
-	function test(){
-		var text = document.getElementById("ambition-form-field");
-		if(text.value != ""){
-			text.value += "\n"; 
-		}
-	}	
-	window.onLoad= test();
+	function sendCheckRequest(planId){
+		console.log("Logged plan ID "+planId);
+		$.ajax({
+			url: '../insert_checkbox',
+			type: "GET",
+			data: {'plan_id': planId},
+			dataType: "json",
+			success: function(data){
+				alert("Success");
+			},
+			error: function(data){
+				alert('Failure');
+				console.log(data.responseText);
+			}
+	});
+}
 </script>

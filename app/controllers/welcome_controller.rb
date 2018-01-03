@@ -1,7 +1,8 @@
 class WelcomeController < ApplicationController
   def index
   	@plans = current_user.plans
-  	@plan = @plans.find_by(date: Time.now.strftime("%d/%m/%Y"))
+  	@dates = @plans.group(:date).map(&:date).uniq
+  	@plans_for_today = @plans.where(date: Time.now.strftime("%d/%m/%Y"))
   end
 
   def send_email
