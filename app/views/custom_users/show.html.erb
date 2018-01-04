@@ -1,26 +1,37 @@
 <table class = "table">
- 	<tr>
- 		<th>
- 			Date
- 		</th>
- 		<th>
- 			Plan
- 		</th>
- 		<th>
- 			Accomplishment
- 		</th>
- 	</tr>
- 	<% @plans.each do |plan| %>
- 		<tr>
- 			<td>
- 				<%=plan.date%>
- 			</td>
- 			<td>
- 				<%=plan.ambition%>
- 			</td>
- 			<td>
- 				<%=plan.accomplishment%>
- 			</td>
- 		</tr>
- 	<%end%>
+	<tr>
+		<th>
+			Date
+		</th>
+		<th>
+			Plan
+		</th>
+		<th>
+			Accomplishment
+		</th>
+	</tr>
+	<% @dates.each do |date| %>
+		<tr >
+			<td>
+				<%=date%>
+			</td>
+			<td>
+				<%@plans.where(date: date).each do |plan|%> 
+					<%=plan.ambition%> <br>
+				<%end%>
+			</td>
+			<td>
+				<%if (date == Time.now.strftime("%d/%m/%Y") && current_time_exceeds_threshold) ||
+					 date != Time.now.strftime("%d/%m/%Y") %>
+					<%@plans.where(date: date).each do |plan|%> 
+						<%if(plan.checkbox == true)%>
+							<s><%=plan.ambition%></s> <br>
+						<%else%>
+							<%=plan.ambition%> <br>
+						<%end%>	
+					<%end%>
+				<%end%>
+			</td>
+		</tr>
+	<%end%>
 </table>

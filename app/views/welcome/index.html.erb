@@ -15,7 +15,7 @@
 <%else%>
 	<%=form_for(:plan, url: plans_path) do |f| %>
 		<div class = "form-group">
-			<%=f.label "What do you plan to learn today? (You can add plans till 6 pm today)"%>
+			<%=f.label "What do you plan to learn today? (You can keep adding plans till 6 pm)"%>
 			<%=f.text_area :ambition, id: "ambition-form-field", class: "form-control"%>
 		</div>
 		<p style="color:#f44336">

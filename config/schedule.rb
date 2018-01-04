@@ -23,12 +23,22 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 
 u = User.all
 u.each do |user|
-	every :day, :at => user.timings do 
-		rake "mailme[#{user.email}]", :environment => "development"
+	if(user.shift == "Shift 1")
+		every :day, :at => "11:30 am" do 
+			rake "mailme[#{user.email}]", :environment => "development"
+		end
+		every :day, :at => "8:00 pm" do
+			rake "mailme[#{user.email}]", :environment => "development"
+		end
+	else
+		every :day, :at => "6:30 pm" do 
+			rake "mailme[#{user.email}]", :environment => "development"
+		end
+		every :day, :at => "2:30 am" do
+			rake "mailme[#{user.email}]", :environment => "development"
+		end
 	end
-	every :day, :at => user.timings_end do
-		rake "mailme[#{user.email}]", :environment => "development"
-	end
+	
 end 
 every :day, :at => '8:00 am' do
 	rake "save_unfinished_tasks", :environment => "development"

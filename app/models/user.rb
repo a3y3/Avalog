@@ -9,8 +9,7 @@ class User < ApplicationRecord
  
 
 	validates :name, :presence => true
-  validates :timings, :presence => true
-  validates :timings_end, :presence => true
+  validates :shift, :presence => true
   validates :department_id, :presence => true,
      :inclusion  => { :in => [ 1, 2,3 ],
      :message    => "%{value} is not a valid number" }
