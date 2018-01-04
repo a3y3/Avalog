@@ -19,18 +19,17 @@
 
 # Learn more: http://github.com/javan/whenever
 require File.expand_path(File.dirname(__FILE__) + "/environment")
-# set :output, "/home/soham/Soham/cron_log.log"
+#set :output, "/home/soham/Soham/cron_log.log"
 
 u = User.all
 u.each do |user|
-	#every :day, :at => user.timings do
 	every :day, :at => user.timings do 
 		rake "mailme[#{user.email}]", :environment => "development"
 	end
 	every :day, :at => user.timings_end do
 		rake "mailme[#{user.email}]", :environment => "development"
 	end
-	# every :day, :at => "8:00 am" do
-	# 	rake "save_unfinished_tasks", :environment => "development"
-	# end CHECK IF THIS WORKS PROPERLY.
 end 
+every :day, :at => '8:00 am' do
+	rake "save_unfinished_tasks", :environment => "development"
+end
