@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   def index
   	@plans = current_user.plans
-  	@dates = @plans.group(:date).map(&:date).uniq
+  	@dates = @plans.group(:date).uniq.pluck(&:date)
   	@plans_for_today = @plans.where(date: Time.now.strftime("%d/%m/%Y"))
   end
 
