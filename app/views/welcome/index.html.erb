@@ -1,8 +1,10 @@
 <h1>Welcome, <%=current_user.name%>!</h1>
-
+The time is now <%=Time.now.hour%>:00.
 <%=show_users_path_if_admin%>
 <%if current_time_exceeds_threshold %>
 	Check off the things you accomplished today. Don't worry, there's always tomorrow for plans you couldn't achieve today!
+	<br>
+	Note: Since the time has exceeded the threshold (11:00) for today, you must wait until tomorrow to see the form for adding newer plans.
 	<% if(@plans_for_today.present?)%>
 		<% @plans_for_today.each do |plan|%>
 			<%if plan.checkbox == false%>
